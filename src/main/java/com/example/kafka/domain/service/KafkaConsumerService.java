@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaConsumerService {
 
-//    @KafkaListener
-//    public void consume(String message){
-//        log.info("consume: {}", message);
-//    }
+    @KafkaListener(topics = "test-topic", groupId = "my-group")
+    public void consume(String message){
+        log.info("consume: {}", message);
+    }
 }
