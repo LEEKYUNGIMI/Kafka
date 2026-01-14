@@ -1,5 +1,6 @@
 package com.example.kafka.domain.controller;
 
+import com.example.kafka.domain.dto.KafkaDto;
 import com.example.kafka.domain.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class KafkaController {
      * @return
      */
     @PostMapping("/sand")
-    public ResponseEntity<String> sendMessage(@RequestParam("message") String message) {
+    public ResponseEntity<String> sendMessage(@RequestBody KafkaDto message) {
         kafkaProducerService.sendMessage(message);
         return ResponseEntity.ok("메시지 전송 완료");
     }
@@ -32,7 +33,7 @@ public class KafkaController {
      * @reutrn
      */
     @PostMapping("/send/withKey")
-    public ResponseEntity<String> sendMessageWithKey(@RequestParam("key") String key, @RequestParam("message") String message) {
+    public ResponseEntity<String> sendMessageWithKey(@RequestParam("key") String key, @RequestBody KafkaDto message) {
         kafkaProducerService.sendMessageWithKey(key, message);
         return ResponseEntity.ok("키와 함께 메시지 전송 완료");
     }
